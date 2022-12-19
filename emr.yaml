@@ -1,0 +1,35 @@
+Type: AWS::EMR::Cluster
+Properties: 
+  #AdditionalInfo: Json
+  Applications: 
+    - Application1
+  AutoScalingRole: ASR1
+  AutoTerminationPolicy: 
+    AutoTerminationPolicy1
+  BootstrapActions: 
+    - BootstrapActionConfig1
+  Configurations: 
+    - Configuration1
+  CustomAmiId: ami-789456123
+  EbsRootVolumeSize: 10
+  Instances: 
+    JobFlowInstancesConfig
+  JobFlowRole: JobFlowRole1
+  KerberosAttributes: 
+    KerberosAttributes1
+  LogEncryptionKmsKeyId: kms-789456123
+  LogUri: uri-789456123
+  ManagedScalingPolicy: 
+    ManagedScalingPolicy1
+  Name: MyEmr123
+  OSReleaseLabel: OSReleaseLabel1
+  ReleaseLabel: ReleaseLabel1
+  ScaleDownBehavior: ScaleDownBehavior1
+  SecurityConfiguration: SecurityConfiguration1
+  ServiceRole: ServiceRole1
+  StepConcurrencyLevel: 5
+  Steps: 
+    - StepConfig
+  #Tags: 
+    - Tag
+  VisibleToAllUsers: VisibleToAllUsers1
