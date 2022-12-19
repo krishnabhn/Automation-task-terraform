@@ -1,8 +1,11 @@
- Type: AWS::Route53
-  Properties:
-    HostedZoneId: ZONEId1
-    Name: name1
-    Type: SPF
-    TTL: '900'
-    #ResourceRecords:
-    #- '"v=spf1 ip4:192.168.0.1/16 -all"'
+AWSTemplateFormatVersion: "2010-09-09"
+Description: An example template for a creating Route53.
+Resources:
+  Route53:
+   Type: AWS::Route53
+   Properties:
+      HostedZoneId: ZONEId1
+      Name: Name1
+      Type: SPF
+      TTL: '900'
+        
