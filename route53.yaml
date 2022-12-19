@@ -1,0 +1,8 @@
+ Type: AWS::Route53
+  Properties:
+    HostedZoneId: ZONEId1
+    Name: name1
+    Type: SPF
+    TTL: '900'
+    #ResourceRecords:
+    #- '"v=spf1 ip4:192.168.0.1/16 -all"'
