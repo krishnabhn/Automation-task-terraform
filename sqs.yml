@@ -1,0 +1,18 @@
+Type: AWS::SQS::Queue
+Properties: 
+  ContentBasedDeduplication: duplication
+  DelaySeconds: 10
+  FifoQueue: yes
+  FifoThroughputLimit: hundred
+  KmsDataKeyReusePeriodSeconds: 20
+  KmsMasterKeyId: ID234
+  MaximumMessageSize: 20
+  MessageRetentionPeriod: 30
+  QueueName: Mysqs1
+  ReceiveMessageWaitTimeSeconds: 20
+  #RedriveAllowPolicy: Json
+  #RedrivePolicy: Json
+  SqsManagedSseEnabled: yes
+  #Tags: 
+   # - Tag
+  VisibilityTimeout: 20
