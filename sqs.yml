@@ -1,3 +1,6 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Creating SQS in CFT"
+Parameters:
 Type: AWS::SQS::Queue
 Properties: 
   ContentBasedDeduplication: duplication
