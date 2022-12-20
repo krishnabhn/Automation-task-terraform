@@ -2,10 +2,12 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: An example template for a creating Route53.
 Resources:
   Route53:
-   Type: AWS::Route53
+   Type: AWS::Route53::RecordSet
    Properties:
-      HostedZoneId: ZONEId1
-      Name: Name1
+      HostedZoneId: Z8VLZEXAMPLE
+      Name: test.example.com
+      ResourceRecords:
+      - 192.0.2.99
       Type: SPF
       TTL: value
         
