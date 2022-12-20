@@ -3,7 +3,7 @@ Description: "Creating SQS in CFT"
 Parameters:
 Type: AWS::SQS::Queue
 Properties: 
-  ContentBasedDeduplication: duplication
+  ContentBasedDeduplication: yes
   DelaySeconds: 10
   FifoQueue: yes
   FifoThroughputLimit: number
