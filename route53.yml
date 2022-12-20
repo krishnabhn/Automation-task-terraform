@@ -9,5 +9,5 @@ Resources:
       ResourceRecords:
       - 192.0.2.99
       Type: SPF
-      TTL: value
+      TTL: 900
         
