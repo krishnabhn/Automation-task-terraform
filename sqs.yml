@@ -6,7 +6,7 @@ Properties:
   ContentBasedDeduplication: duplication
   DelaySeconds: 10
   FifoQueue: yes
-  FifoThroughputLimit: hundred
+  FifoThroughputLimit: number
   KmsDataKeyReusePeriodSeconds: 20
   KmsMasterKeyId: ID234
   MaximumMessageSize: 20
