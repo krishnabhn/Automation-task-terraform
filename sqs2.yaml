@@ -1,40 +1,40 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Best Practice SQS FIFO Queue, only available in us-east-1, us-east-2,
-  us-west-2, eu-west-1, ap-northeast-1, ap-southeast-2 at time of template creation.
+  us-west-2, eu-west-1 at time of template creation.
 Parameters:
-  ContentBasedDeduplication:
+  contentbaseddeduplication:
     Description: specifies whether to enable content-based deduplication
     Type: String
     AllowedValues:
     - 'true'
     - 'false'
     Default: 'true'
-  QueueName:
+  queuename:
     Description: This stack will append fifo to the end of this name.
     Type: String
-  DelaySeconds:
+  delayseconds:
     Description: The Id of the AMI you wish to launch the instance from.
     Type: Number
     Default: '5'
-  MaximumMessageSize:
+  maximummessagesize:
     Type: Number
     Description: The limit of how many bytes that a message can contain before Amazon
       SQS rejects it, 1024 bytes (1 KiB) to 262144 bytes (256 KiB)
     Default: '262144'
-  MessageRetentionPeriod:
+  messageretentionperiod:
     Description: 'The number of seconds that Amazon SQS retains a message. You can
       specify an integer value from 60 seconds (1 minute) to 1209600 seconds (14 days). '
     Type: Number
     Default: '345600'
-  ReceiveMessageWaitTimeSeconds:
+  receivemessagewaittimeseconds:
     Description: Specifies the duration, in seconds, that the ReceiveMessage action
       call waits until a message is in the queue in order to include it in the response,
       as opposed to returning an empty response if a message is not yet available.
       1 to 20
     Type: Number
     Default: '0'
-  UsedeadletterQueue:
+  usedeadletterqueue:
     Description: A dead-letter queue is a queue that other (source) queues can target
       for messages that can't be processed (consumed) successfully. You can set aside
       and isolate these messages in the dead-letter queue to determine why their processing
@@ -44,7 +44,7 @@ Parameters:
     - 'true'
     - 'false'
     Default: 'false'
-  VisibilityTimeout:
+  visibilitytimeout:
     Description: This should be longer than the time it would take to process and
       delete a message, this should not exceed 12 hours.
     Type: Number
@@ -53,26 +53,26 @@ Mappings: {}
 Conditions:
   CreateDeadLetterQueue:
     Fn::Equals:
-    - Ref: UsedeadletterQueue
+    - Ref: usedeadletterqueue
     - 'true'
 Resources:
   SQSQueue:
     Type: AWS::SQS::Queue
     Properties:
-      ContentBasedDeduplication:
-        Ref: ContentBasedDeduplication
+      contentbaseddeduplication:
+        Ref: contentbaseddeduplication
       FifoQueue: 'true'
-      QueueName:
+      queuename:
         Fn::Join:
         - ''
-        - - Ref: QueueName
+        - - Ref: queuename
           - ".fifo"
-      MaximumMessageSize:
-        Ref: MaximumMessageSize
-      MessageRetentionPeriod:
-        Ref: MessageRetentionPeriod
-      ReceiveMessageWaitTimeSeconds:
-        Ref: ReceiveMessageWaitTimeSeconds
+      maximummessagesize:
+        Ref: maximummessagesize
+      messageretentionperiod:
+        Ref: messageretentionperiod
+      receivemessagewaittimeseconds:
+        Ref: receivemessagewaittimeseconds
       RedrivePolicy:
         Fn::If:
         - CreateDeadLetterQueue
@@ -82,17 +82,17 @@ Resources:
             - Arn
           maxReceiveCount: 5
         - Ref: AWS::NoValue
-      VisibilityTimeout:
-        Ref: VisibilityTimeout
+      visibilitytimeout:
+        Ref: visibilitytimeout
   MyDeadLetterQueue:
     Condition: CreateDeadLetterQueue
     Type: AWS::SQS::Queue
     Properties:
       FifoQueue: 'true'
-      QueueName:
+      queuename:
         Fn::Join:
         - ''
-        - - Ref: QueueName
+        - - Ref: queuename
           - Deadletter
           - ".fifo"
 Outputs:
@@ -106,9 +106,9 @@ Outputs:
       Fn::GetAtt:
       - SQSQueue
       - Arn
-  QueueName:
+  queuename:
     Description: Name newly created SQS Queue
     Value:
       Fn::GetAtt:
       - SQSQueue
-      - QueueName
+      - queuename
