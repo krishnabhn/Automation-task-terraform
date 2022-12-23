@@ -13,6 +13,7 @@ Parameters:
   queuename:
     Description: This stack will append fifo to the end of this name.
     Type: String
+    Default: 'queuename1'
   delayseconds:
     Description: The Id of the AMI you wish to launch the instance from.
     Type: Number
